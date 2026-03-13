@@ -112,3 +112,25 @@ const options = {
 
 const headerObserver = new IntersectionObserver(sticky, options);
 headerObserver.observe(header);
+
+// Implementing the effect of revealing the sections on scrolling
+const allSections = document.querySelectorAll(".section");
+
+const revealSection = function (entries, observer) {
+  entries.forEach((entry) => {
+    // Guard clause
+    if (!entry.isIntersecting) return;
+
+    entry.target.classList.remove("section--hidden");
+    observer.unobserve(entry.target);
+  });
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+allSections.forEach((section) => {
+  sectionObserver.observe(section);
+  section.classList.add("section--hidden");
+});

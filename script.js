@@ -134,3 +134,28 @@ allSections.forEach((section) => {
   sectionObserver.observe(section);
   section.classList.add("section--hidden");
 });
+
+// Implementing lazy loading images
+const allImages = document.querySelectorAll("img[data-src]");
+
+const loadImage = function (entries, observer) {
+  // You can also do that for one element in threshold instead of using forEach everytime
+  const [entry] = entries;
+
+  // Guard clause
+  if (!entry.isIntersecting) return;
+
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener("load", function () {
+    entry.target.classList.remove("lazy-img");
+  });
+};
+
+const imageObserver = new IntersectionObserver(loadImage, {
+  root: null,
+  threshold: 0,
+  rootMargin: "300px",
+});
+
+allImages.forEach((img) => imageObserver.observe(img));

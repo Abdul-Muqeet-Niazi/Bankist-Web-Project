@@ -142,6 +142,10 @@
   .nav__logo {
     display: none;
   }
+
+  .nav__item {
+    margin-left: 0;
+  }
   /* ------------------------------------------------------------------------------------------------ */
 
   .nav {
@@ -302,7 +306,41 @@
     font-size: 50%;
   }
 
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h4 {
+    text-align: center;
+  }
+
+  .modal {
+    max-width: 45rem;
+    padding: 6rem 2rem;
+  }
+
+  .operations .btn {
+    font-size: 1.3rem;
+    padding: 1.25rem 0.5rem;
+  }
+
+  .operations__header {
+    font-size: 1.8rem;
+  }
+
+  .operations__content {
+    font-size: 1.4rem;
+  }
+
+  .operations__content--active {
+    column-gap: 2rem;
+  }
+
+  .testimonial::before {
+    left: -6rem;
+  }
+
   .testimonial__text {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 }

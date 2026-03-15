@@ -244,3 +244,81 @@ const slider = function () {
   });
 };
 slider();
+
+// APPLYING NAVIGATION FUNCTIONALITY (FOR MOBILE)
+
+// Open Navigation by clicking on Burger Icon
+const btnMobNavEL = document.querySelector(".btn-mobile-nav");
+const headerEL = document.querySelector(".header");
+
+btnMobNavEL.addEventListener("click", function () {
+  headerEL.classList.toggle("nav-open");
+});
+
+// Closing Navigation after clicking on the link of Navigation-viewport
+// (It causes some problem of smooth scrolling so, we also implement this as manually)
+
+const allLinks = document.querySelectorAll("a:link");
+
+allLinks.forEach(function (link) {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    const href = link.getAttribute("href");
+    // console.log(href)
+
+    // Scroll backto Top
+    if (href === "#")
+      window.scrollTo({
+        top: 0,
+        behavior: smooth,
+      });
+
+    // Scroll to other links
+    if (href !== "#" && href.startsWith("#")) {
+      const sectionEL = document.querySelector(href);
+      sectionEL.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // Close the Burger-Navigation after clicking on link
+    if (link.classList.contains("main-nav-link")) {
+      headerEL.classList.toggle("nav-open");
+    }
+  });
+});
+
+const query = window.matchMedia("(max-width: 47em)");
+const mobileNavHeader = document.querySelector(".mob__nav--header");
+const mobileNavHeaderHeight = mobileNavHeader.getBoundingClientRect().height;
+const mobileLogo = document.querySelector(".mob__logo");
+
+const handleMobileLayout = function (e) {
+  if (e.matches) {
+    mobileNavHeader.classList.add("mob__logo--active");
+    mobileLogo.classList.add("mob__logo--visible");
+
+    const mobNavSticky = function (entries) {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) mobileNavHeader.classList.add("sticky");
+        else mobileNavHeader.classList.remove("sticky");
+      });
+    };
+
+    const option = {
+      root: null,
+      threshold: 0,
+      rootMargin: `-${mobileNavHeaderHeight}px`,
+    };
+
+    const mobNavHeaderObserver = new IntersectionObserver(mobNavSticky, option);
+    mobNavHeaderObserver.observe(header);
+  } else {
+    mobileLogo.classList.remove("mob__logo--visible");
+    mobileNavHeader.classList.remove("mob__logo--active");
+  }
+};
+
+// run once when page loads
+handleMobileLayout(query);
+
+// run again when screen size crosses 47em
+query.addEventListener("change", handleMobileLayout);

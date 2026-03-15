@@ -26,7 +26,7 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   color: #444;
   line-height: 1.9;
@@ -38,7 +38,9 @@ body {
   padding: 15rem 3rem;
   border-top: 1px solid #ddd;
 
-  transition: transform 1s, opacity 1s;
+  transition:
+    transform 1s,
+    opacity 1s;
 }
 
 .section--hidden {
@@ -170,6 +172,60 @@ img {
   color: #333;
 }
 
+/* BURGER-MOBILE NAVIGATION */
+
+.mob__nav--header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 9rem;
+  width: 100%;
+  padding: 0 1.2rem;
+  display: none;
+}
+
+.btn-mobile-nav {
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: none;
+  /* Note for z-index: We are having trouble of focus border color of orange, when we hit tab by keyboard 
+  but this border hides from background-color of #fff and rarely see it which likes a bug so, we make this
+  button as top every element on page so, it can show above background-color of #fff.  */
+  z-index: 9999;
+}
+
+.icon-mobile-nav {
+  height: 4.8rem;
+  width: 4.8rem;
+  color: #333;
+}
+
+.icon-mobile-nav[name="close-outline"] {
+  display: none;
+}
+
+.mob__logo {
+  /* display: none; */
+  height: 4.5rem;
+  transition: all 0.3s;
+}
+
+.mob__logo--active {
+  display: flex;
+}
+
+/* .mob__logo--visible {
+  display: flex;
+} */
+
+.mob__nav--header.sticky {
+  position: fixed;
+  padding: 0 3rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 1000;
+}
+
 /* HEADER */
 .header {
   padding: 0 3rem;
@@ -216,7 +272,7 @@ h4 {
 
 .highlight::after {
   display: block;
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -470,7 +526,7 @@ h4 {
 }
 
 .testimonial::before {
-  content: '\201C';
+  content: "\201C";
   position: absolute;
   top: -5.7rem;
   left: -6.8rem;

@@ -297,12 +297,12 @@
 /**********************************************************************************/
 
 /* 372/12 = 31em */
-@media (max-width: 31rem) {
+@media (max-width: 31em) {
   html {
     font-size: 50%;
   }
 
   .testimonial__text {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 }

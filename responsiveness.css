@@ -224,9 +224,13 @@
     padding: 4rem 0rem 0rem 0rem;
   }
 
+  h1 {
+    font-size: 4rem;
+  }
+
   .header__img {
     margin-top: 8rem;
-    width: 60%;
+    width: 80%;
   }
 
   .section__header {
